@@ -6,7 +6,7 @@
     <hr />
     <b>Answer:</b>
     <ul>
-      <li>217</li>
+      <li v-for="number in numberDivisibleBy()">{{number}}</li>
     </ul>
 
     <hr />
@@ -15,7 +15,8 @@
     <b>Answer:</b>
 
     <ul>
-      <li v-for="number in numbersDivisibleBySeventeen()">{{number}}</li>
+
+
     </ul>
 
 
@@ -24,6 +25,18 @@
 
 <script setup>
 
+function numberDivisibleBy(){
+  let numbers = [];
+  for (let i = 650; i <= 5000; i++){
+    if(i % 217 === 0){
+      numbers.push(i);
+    }
+  }
+  console.log(numbers);
+  return numbers;
+}
+
+/*
   function numbersDivisibleBySeventeen() {
     let numbers = [];
 
@@ -34,7 +47,7 @@
     }
     console.log(numbers);
     return numbers;
-  }
+  } */
 
 </script>
 
@@ -42,5 +55,8 @@
 <style scoped>
 .container {
   text-align: left;
+}
+li{
+
 }
 </style>
