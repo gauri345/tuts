@@ -111,8 +111,8 @@ export default {
 
       // partial application of function
       const multiplication = function (multiplyBy) {
-         return function (number) {
-            return number * multiplyBy;
+        return function (number) {
+          return number * multiplyBy;
         };
       }
 
@@ -126,7 +126,6 @@ export default {
       console.log("sdfdsfdsf: ", resultAgain);
 
 
-
       const click = function (element, callback) {
         if ("button" === element) {
           // will make http request to russia. response will take 20 mins.
@@ -137,8 +136,27 @@ export default {
       }
 
       click("button", function (value) {
-          console.log(value);
+        console.log(value);
       });
+
+      const x = function (num1) {
+        return "some stuff " + num1;
+      }
+
+      const string = x(12);
+      console.log(string);
+
+
+      const a = function (kando) {
+
+        kando(100, 200);
+      }
+
+
+      const functionToPass = function() {
+      };
+
+      a(functionToPass);
 
 
       return "hello world"

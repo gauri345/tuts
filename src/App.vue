@@ -3,13 +3,14 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 
 import ArrayExerciseOne from "./components/arrays/One.vue";
+import ArrayExerciseTwo from "./components/arrays/Two.vue";
 
 
 
 </script>
 
 <template>
-  <ArrayExerciseOne/>
+  <ArrayExerciseTwo />
 
 
 </template>
