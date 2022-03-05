@@ -14,8 +14,13 @@
 
   <div class="pagination">
     <div aria-label="First group" class="btn-group" role="group">
-      <button class="btn btn-outline-secondary" type="button" @click="getAllPeople(1)">1</button>
-      <button class="btn btn-outline-secondary" type="button" @click="getAllPeople(2)">2</button>
+      <button class="btn btn-outline-secondary" type="button" @click="getAllPeople(1)">
+        <router-link to="/people/1">1</router-link>
+      </button>
+
+      <button class="btn btn-outline-secondary" type="button" @click="getAllPeople(2)">
+        <router-link to="/people/2">2</router-link>
+      </button>
     </div>
   </div>
 </template>
@@ -49,7 +54,7 @@ export default {
   },
 
   created() {
-    this.getAllPeople(1);
+    this.getAllPeople(this.$route.params.pageNumber);
   }
 }
 </script>
