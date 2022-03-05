@@ -6,10 +6,36 @@
       <tr>
         <th>Name</th>
         <th>age</th>
+        <th>address</th>
+        <th colspan="3">marks</th>
       </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td> math</td>
+        <td>science</td>
+        <td>english</td>
+        <td>total</td>
+        <td>result</td>
+        <td>grade</td>
+      </tr>
+
       <tr v-for="person in listPerson()">
-        <td>{{ person.first_name }} {{ person.middle_name }} {{ person.last_name }}</td>
-        <td>{{ person.age }}</td>
+        <td>
+          {{ person.first_name.toUpperCase() }}
+          {{ person.middle_name.toString() }}
+          {{ person.last_name.toUpperCase() }}
+        </td>
+        <td>
+          {{ person.age }}
+        </td>
+        <td> {{ person.address.city }} {{ ',' }} {{ person.address.country }}</td>
+        <td>{{ person.marks.math }}</td>
+        <td>{{ person.marks.science }}</td>
+        <td>{{ person.marks.english }}</td>
+        <td>{{ person.marks.total }}</td>
+        <td>{{ person.marks.result }}</td>
+        <td>{{ person.marks.grade }}</td>
+
       </tr>
     </table>
 
@@ -23,28 +49,8 @@
       5. Also display the marks obtained each in each subject.
       6. Also display the total marks obtained by each person.
       7. Also display if the person is pass or fail (pass if all subject has marks > 30).
-      8. Also Display the grade of each person. (total_marks > 30 (pass), total_marks > 60 (First Division), total_marks > 80 (Distinction))
+      8. Also Display the grade of each person. must be pass and logic is as follows (total_marks > 30% (pass), total_marks > 60% (First Division), total_marks > 80% (Distinction))
     -->
-
-    <!--
-    <hr/>
-    <b>Exercise Two: </b> Display a list of all number between 650 and 5000 which are divisible by 217.
-    <hr/>
-    <b>Answer:</b>
-    <ul>
-      <li v-for="number in numberDivisibleBy()">{{ number }}</li>
-    </ul>
-
-    <hr/>
-    <b>Exercise One: </b> Display a list of all number between 1 and 500 which are divisible by 17.
-    <hr/>
-    <b>Answer:</b>
-
-    <ul>
-
-
-    </ul>
- -->
 
   </div>
 </template>
@@ -59,7 +65,7 @@ const data = [
     last_name: "Upreti",
     age: 29,
     address: {
-      city: "Köln",
+      city: "Biratnager",
       country: "Germany"
     },
     marks: {
@@ -145,64 +151,107 @@ const data = [
   }
 ];
 
+
 function listPerson() {
-
-  const list = ["one", "two", "three"];
-
-  console.log(list);
-
-  console.log('-----------for-------------')
-  for (let i = 0; i < list.length; i++) {
-    console.log(i, list[i]);
-  }
-
-  console.log('-----------forEach-------------')
-  // Apply the function for each element in the list array.
-  // with forEach on cannot return a value form the function.
-  list.forEach(function (item, index) {
-    console.log(index, item);
+  const sorted = data.sort((person1, person2) => {
+    return person1.age - person2.age;
   });
-
-  console.log('-----------Map-------------')
-  const capitalized = list.map(item => {
-    return item.toLocaleUpperCase(); // Can return anything.
+  const filtered = sorted.filter(person => {
+    return person.age <= 90 && person.address.city !== 'Biratnager'
   });
+  return filtered.map(function (person) {
+    const total = person.marks.english + person.marks.math + person.marks.science;
+    person.marks.total = total;
+    const fail = person.marks.math <= 30 || person.marks.science <= 30 || person.marks.english <= 30
 
-  console.log(capitalized);
-
-
-  console.log('-----------Filter-------------')
-  const filtered = capitalized.filter(item => {
-    return item === 'ONE' || item === 'TWO'; // Must return a boolean value.
-
-    /**
-     if (item === 'ONE' || item === 'TWO') {
-      return true;
+    if (fail) {
+      person.marks.result = "fail";
+      person.marks.grade = "fail";
     } else {
-      return false;
-    }
-     */
 
+      person.marks.result = 'pass';
+      person.marks.grade = 'pass';
+
+      const percentageObtained = (total / 300) * 100;
+
+      if (percentageObtained >= 50 && percentageObtained < 60) {
+        person.marks.grade = "second";
+      }
+
+      if (percentageObtained >= 60 && percentageObtained <= 80) {
+        person.marks.grade = "first";
+      }
+
+      if (percentageObtained > 80) {
+        person.marks.grade = "distinction";
+      }
+    }
+
+    return person
   });
 
-  console.log(filtered);
-
-  return data;
 }
 
-function numberDivisibleBy() {
-  let numbers = [];
-  for (let i = 650; i <= 5000; i++) {
-    if (i % 217 === 0) {
-      numbers.push(i);
-    }
-  }
-  console.log(numbers);
-  return numbers;
-}
 
 /*
-  function numbersDivisibleBySeventeen() {
+const list = ["one", "two", "three"];
+
+console.log(list);
+
+console.log('-----------for-------------')
+for (let i = 0; i < list.length; i++) {
+  console.log(i, list[i]);
+}
+
+console.log('-----------forEach-------------')
+// Apply the functions for each element in the list array.
+// with forEach on cannot return a value form the functions.
+list.forEach(functions (item, index) {
+  console.log(index, item);
+});
+
+console.log('-----------Map-------------')
+const capitalized = list.map(item => {
+  return item.toLocaleUpperCase(); // Can return anything.
+});
+
+console.log(capitalized);
+
+
+console.log('-----------Filter-------------')
+const filtered = capitalized.filter(item => {
+  return item === 'ONE' || item === 'TWO'; // Must return a boolean value.
+
+
+   if (item === 'ONE' || item === 'TWO') {
+    return true;
+  } else {
+    return false;
+  }
+
+
+});
+
+console.log(filtered);
+
+return data;
+}
+
+
+
+/* functions numberDivisibleBy() {
+let numbers = [];
+for (let i = 650; i <= 5000; i++) {
+  if (i % 217 === 0) {
+    numbers.push(i);
+  }
+}
+console.log(numbers);
+return numbers;
+}
+*/
+/*
+  functions numbersDivisibleBySeventeen() {
     let numbers = [];
 
     for (let i = 0; i <= 500; i++) {
@@ -222,7 +271,7 @@ function numberDivisibleBy() {
   text-align: left;
 }
 
-li {
-
+td {
+  padding: 1rem;
 }
 </style>
