@@ -40,5 +40,6 @@ test('will find the smallest value in an array', () => {
     const minimum= minimumFinder(emptyList);
     expect(minimum).toBe("List cannot be empty.");
 
+
 });
 
