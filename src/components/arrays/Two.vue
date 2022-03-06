@@ -14,13 +14,13 @@
 
   <div class="pagination">
     <div aria-label="First group" class="btn-group" role="group">
-      <button class="btn btn-outline-secondary" type="button" @click="getAllPeople(1)">
-        <router-link to="/people/1">1</router-link>
-      </button>
 
-      <button class="btn btn-outline-secondary" type="button" @click="getAllPeople(2)">
-        <router-link to="/people/2">2</router-link>
-      </button>
+        <router-link to="/people/1" class="btn btn-outline-secondary">1</router-link>
+
+
+        <router-link to="/people/2" class="btn btn-outline-secondary">2</router-link>
+
+      <router-link to="/" class="btn btn-outline-secondary">go to homepage</router-link>
     </div>
   </div>
 </template>

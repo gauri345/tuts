@@ -1,6 +1,7 @@
 import Two from "../components/arrays/Two.vue";
 import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from "../components/Home.vue";
+import Greeting from "../components/Greeting.vue";
 
 const routes = [
     {
@@ -12,6 +13,12 @@ const routes = [
         component: Two,
         name: "people_route"
     },
+
+    {
+        path:'/greet',
+        component:Greeting
+    }
+
 ];
 
 
