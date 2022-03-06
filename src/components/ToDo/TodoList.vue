@@ -13,21 +13,14 @@
   <div class="card">
     <div class="card-body">
       <ul class="list-group">
+        <div class="alert alert-danger" role="alert">{{message}}
+        </div>
         <li v-for="todo in todoList" class="list-group-item">
           <p>{{ todo.task }}&nbsp;| &nbsp;{{ showStatus(todo) }}</p>
         </li>
       </ul>
     </div>
   </div>
-
-
-  <!--
-  TODO:
-  1. Create a todo list. read the data from the example provided.
-  2. create a form to add a new do item.
-
-  -->
-
 
   <router-link class="btn btn-outline-secondary" to="/">go to homepage</router-link>
 </template>
@@ -38,6 +31,7 @@ export default {
   data() {
     return {
       taskContent: '',
+      message: '',
       todoList: [
         {
           id: 1,
@@ -54,7 +48,7 @@ export default {
   },
   methods: {
     showStatus(todo) {
-      if (todo.completed == false) {
+      if (todo.completed === false) {
         return 'not competed';
       } else {
         return 'completed'
@@ -67,17 +61,21 @@ export default {
           id = todo.id;
         }
       });
-
       return id++
     },
-    addTodo() {
-      // Calculate the id.
-      // get the largest id from the existing todo list and increase it by one.
+
+  },
+  addTodo() {
+    if (this.taskContent!== '') {
       this.todoList.push({
         id: this.getId(),
         task: this.taskContent,
         completed: false
       })
+    }
+    else{
+      this.message='please enter the task';
+      console.log('hello')
     }
   }
 }
@@ -85,6 +83,7 @@ export default {
 
 <style scoped>
 .card {
+
   margin-bottom: 2rem;
   background-color: lightsteelblue;
 }
