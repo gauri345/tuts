@@ -3,7 +3,15 @@
     <li v-for="person in people">
       <div class="card">
         <div class="card-body">
-          <p><img :alt="person.first_name" :src="person.avatar" class="img-thumbnail"></p>
+          <!--
+           TODO:
+           1. The image of each person should be clickable.
+           2. When some on click on the image it should display the details page for that person.
+          -->
+
+          <router-link :to="getPersonUrl(person.id)">
+            <img :alt="person.first_name" :src="person.avatar" class="img-thumbnail">
+          </router-link>
           <p>{{ person.first_name }} {{ person.last_name }}</p>
           <p>{{ person.email }}</p>
         </div>
@@ -27,7 +35,7 @@
 
 <script>
 export default {
-  name: "Two",
+  name: "PeopleList",
   data() {
     return {
       people: []
@@ -36,7 +44,6 @@ export default {
   components: {},
   methods: {
     getAllPeople(pageNumber) {
-      const that = this;
       const requestOptions = {
         method: 'GET',
         redirect: 'follow'
@@ -44,12 +51,12 @@ export default {
 
       fetch("https://reqres.in/api/users?page=" + pageNumber, requestOptions) // make an http request.
           .then(response => response.json())
-          .then(function (result) {
-            return that.people = result.data;
-          })
-          .catch(function (error) {
-            console.log('error', error)
-          });
+          .then(result => this.people = result.data)
+          .catch(error => console.log('error', error));
+    },
+
+    getPersonUrl(personId) {
+      return "/person/" + personId;
     }
   },
 

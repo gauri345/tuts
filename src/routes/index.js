@@ -1,7 +1,8 @@
-import Two from "../components/arrays/Two.vue";
+import PeopleList from "../components/people/PeopleList.vue";
 import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from "../components/Home.vue";
 import Greeting from "../components/Greeting.vue";
+import PersonDetail from "../components/people/PersonDetail.vue";
 
 const routes = [
     {
@@ -10,8 +11,14 @@ const routes = [
     },
     {
         path: '/people/:pageNumber/',
-        component: Two,
-        name: "people_route"
+        component: PeopleList,
+        name: "people_list"
+    },
+
+    {
+        path: '/person/:personId',
+        component: PersonDetail,
+        name: 'person_detail'
     },
 
     {
