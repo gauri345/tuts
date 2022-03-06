@@ -3,6 +3,7 @@ import {createRouter, createWebHashHistory} from 'vue-router';
 import Home from "../components/Home.vue";
 import Greeting from "../components/Greeting.vue";
 import PersonDetail from "../components/people/PersonDetail.vue";
+import TodoList from "../components/ToDo/TodoList.vue";
 
 const routes = [
     {
@@ -24,6 +25,10 @@ const routes = [
     {
         path:'/greet',
         component:Greeting
+    },
+    {
+        path:'/TodoList',
+        component: TodoList
     }
 
 ];

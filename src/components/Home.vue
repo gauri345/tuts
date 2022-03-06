@@ -4,10 +4,13 @@
   <div v-if="hasError" class="alert alert-danger" role="alert">
     Number must be either 1 or 2.
   </div>
+  <hr>
   <button class="btn-dark btn" @click="showPeople()">Show me people</button>
 
   <hr>
   <router-link class="btn-dark btn" to="/greet">greet</router-link>
+  <hr>
+  <router-link class="btn-dark btn" to="/TodoList"> TodoList</router-link>
 
 </template>
 
