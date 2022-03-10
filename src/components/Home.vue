@@ -11,12 +11,18 @@
   <router-link class="btn-dark btn" to="/greet">greet</router-link>
   <hr>
   <router-link class="btn-dark btn" to="/TodoList"> TodoList</router-link>
+  <router-link class="btn-dark btn" to="/trial"> trial</router-link>
+  <hr>
+
+  <router-link class="btn-dark btn" to="/personal"> perosnal information</router-link>
 
 </template>
 
 <script>
 export default {
   name: "Home",
+  components: {},
+
   data() {
     return {
       pageNumber: "",

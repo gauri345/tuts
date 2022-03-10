@@ -4,11 +4,16 @@ import Home from "../components/Home.vue";
 import Greeting from "../components/Greeting.vue";
 import PersonDetail from "../components/people/PersonDetail.vue";
 import TodoList from "../components/ToDo/TodoList.vue";
-
+import trial from "../components/ToDo/trial.vue";
+import personalForm from "../components/formValditation/personalForm.vue";
 const routes = [
     {
         path: '/',
         component: Home
+    },
+    {
+      path:'/trial',
+      component: trial
     },
     {
         path: '/people/:pageNumber/',
@@ -21,6 +26,12 @@ const routes = [
         component: PersonDetail,
         name: 'person_detail'
     },
+    {
+        path:'/personal',
+        component: personalForm,
+        name:'personalForm'
+    },
+
 
     {
         path:'/greet',
